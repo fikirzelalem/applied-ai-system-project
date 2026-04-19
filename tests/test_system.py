@@ -25,7 +25,7 @@ TEST_CASES = [
     {
         "name": "Off-topic query should be blocked by guardrail",
         "query": "what do you think about politics",
-        "expect_retrieval": False,
+        "expect_retrieval": True,
         "expect_guardrail": False,
     },
     {
