@@ -136,9 +136,7 @@ The test harness in `tests/test_system.py` runs 6 predefined inputs through the 
 - Off-topic queries like politics, were correctly blocked by the guardrail.
 - Queries that didn't make any sense, retrieved nothing and was blocked so the system correctly refused to answer the question.
 
-**Result: 6/6 tests passed**
-
-The biggest limitation is that keyword search misses synonyms. "melancholy" won't match "sad" even though if they mean the same thing.
+**Result: 6/6 tests passed. The guardrail correctly blocked all off-topic and empty-context queries. The system struggled with synonym mismatches since keyword search cannot match "melancholy" to "sad" even though they mean the same thing. Logging captured every interaction including guardrail rejections which made it easy to trace exactly what the system did and why.**
 
 ---
 
