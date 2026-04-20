@@ -6,28 +6,45 @@ from src.logger import log
 
 st.set_page_config(page_title="Cadence AI", page_icon="🎵", layout="centered")
 
+# Session state for quick prompts
+if "quick_prompt" not in st.session_state:
+    st.session_state.quick_prompt = None
+
 # Sidebar
 with st.sidebar:
     st.title("🎵 Cadence AI")
-    st.markdown("Your RAG-powered music recommendation assistant.")
+    st.markdown("*Your RAG-powered music recommendation assistant*")
     st.divider()
-    st.markdown("""
-**How it works:**
-1. You describe what you want
-2. The system searches the knowledge base
-3. A guardrail checks if the question is valid
-4. Gemini generates a grounded response
 
-**Knowledge base:**
-- 13 genre guides
-- 15 mood descriptions
-- 18 songs with full metadata
+    st.markdown("**Try a quick prompt:**")
+    if st.button("🌙 Chill study vibes"):
+        st.session_state.quick_prompt = "suggest something chill and acoustic for studying"
+    if st.button("💪 Gym energy"):
+        st.session_state.quick_prompt = "high energy intense song for the gym"
+    if st.button("🌃 Late night drive"):
+        st.session_state.quick_prompt = "something moody and dark for a night drive"
+    if st.button("😊 Feel good songs"):
+        st.session_state.quick_prompt = "something smooth and feel good"
+    if st.button("🎸 Intense rock"):
+        st.session_state.quick_prompt = "intense rock song with high energy"
+
+    st.divider()
+    st.markdown("**How it works:**")
+    st.markdown("""
+1. You describe what you want
+2. Retriever searches the knowledge base
+3. Guardrail checks the question
+4. Gemini generates a grounded response
 """)
     st.divider()
-    if st.button("Clear chat"):
+    st.markdown("**Knowledge base:**")
+    st.markdown("13 genres · 15 moods · 18 songs")
+    st.divider()
+    if st.button("🗑️ Clear chat"):
         st.session_state.messages = []
+        st.session_state.quick_prompt = None
         st.rerun()
-    st.caption("Built for AI110 Module 4 | Extends Music Recommender (Module 3)")
+    st.caption("AI110 Module 4 | Extends Music Recommender (Module 3)")
 
 @st.cache_resource
 def load_all_docs():
@@ -55,8 +72,18 @@ for message in st.session_state.messages:
                 for source in message["sources"]:
                     st.caption(source)
 
+# Handle quick prompt from sidebar
+if st.session_state.quick_prompt:
+    query = st.session_state.quick_prompt
+    st.session_state.quick_prompt = None
+else:
+    query = None
+
 # Chat input
-if query := st.chat_input("What are you in the mood for?"):
+if typed := st.chat_input("What are you in the mood for?"):
+    query = typed
+
+if query:
     # Show user message
     st.session_state.messages.append({"role": "user", "content": query})
     with st.chat_message("user"):
