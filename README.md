@@ -94,6 +94,8 @@ python -m tests.test_system
 
 ## Sample Interactions with Cadence AI
 
+![Cadence AI Demo](assets/demo_screenshot.png)
+
 **Input:** *"suggest something chill and acoustic for late night studying"*
 
 > Based on your query, I found lofi and acoustic tracks that match well. Midnight Coding by LoRoom is a great pick. It's lofi with chill energy (0.42) and high acousticness (0.71), perfect for a focused late-night session. Library Rain by Paper Lanterns is another strong option with an even softer feel.
