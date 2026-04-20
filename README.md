@@ -63,7 +63,7 @@ User Input (Streamlit UI)
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/fikirzelalem/ai110-finalproject.git
+git clone https://github.com/fikirzelalem/applied-ai-system-project.git
 cd ai110-finalproject
 ```
 
