@@ -1,6 +1,6 @@
 # Cadence AI
 
-A RAG-powered music recommendation assistant built on top of the Music Recommender Simulation (AI110 Module 3).
+A RAG-powered music recommendation assistant built on top of the Music Recommender Simulation we did in AI110 Module 3.
 
 ---
 
@@ -10,19 +10,19 @@ A RAG-powered music recommendation assistant built on top of the Music Recommend
 
 The Music Recommender Simulation was a rule-based recommendation engine built in Python. It scored songs from an 18-song catalog against a user's preferred genre, mood, energy level, and acoustic preference using a weighted scoring function. The system ran entirely from the command line and produced ranked recommendations with plain-English explanations for each result.
 
-Cadence AI extends that foundation by adding a natural language interface, a RAG pipeline that retrieves music knowledge before generating a response, a Gemini-powered generator, and a Streamlit UI. It turns a CLI script into a full applied AI system.
+For the final project I chose to create an AI music recommender called Cadence AI which extends that foundation by adding a natural language interface, a RAG pipeline that retrieves music knowledge before generating any response, a Gemini-powered generator, and a Streamlit User Interface. It turns the CLI script we used and demonstrated in Module 3 into a full applied AI system.
 
 ---
 
 ## What It Does
 
-Cadence AI lets you describe what you're in the mood for in plain English and returns a grounded music recommendation. Instead of filling out preference fields, you just type something like:
+Cadence AI is an AI that lets you describe what you're in the mood for listening in plain English and returns a grounded and accurate music recommendation. Instead of filling out the user's preference fields, the user can just type something like:
 
 - *"suggest something chill and acoustic for studying"*
 - *"I want high energy pop for working out"*
 - *"something dark and moody for a night drive"*
 
-The system searches a real knowledge base of genre guides, mood descriptions, and the song catalog before calling the AI, so every answer is grounded in actual data instead of hallucinated.
+Then the system searches a real knowledge base of genre guides, mood descriptions, and the song catalog before calling the AI so every answer is grounded in actual data instead of being made up.
 
 ---
 
@@ -92,7 +92,7 @@ python -m tests.test_system
 
 ---
 
-## Sample Interactions
+## Sample Interactions with Cadence AI
 
 **Input:** *"suggest something chill and acoustic for late night studying"*
 
@@ -114,45 +114,44 @@ python -m tests.test_system
 
 ## Design Decisions
 
-**Why RAG instead of just prompting Gemini directly?**
-Without retrieval, the model would hallucinate song titles and artist names. By grounding every response in the actual docs and song catalog, the system can only recommend songs that actually exist.
+**Why use RAG instead of just prompting Gemini directly?**
+Without retrieval, the model would make up song titles and artist names but by grounding every response in the actual docs and song catalog, the system can only recommend songs that actually exist.
 
 **Why keyword search instead of embeddings?**
-Embeddings would require an additional API or library. Keyword matching is transparent, fast, and easy to explain, which matters more for a classroom project than raw accuracy.
+Embeddings would require an additional API or the use of another library. Keyword matching is fast and easy to explain which matters more for a class projects rather than raw accuracy.
 
-**Why a guardrail?**
-A guardrail that refuses to answer when context is missing is more honest than a confident wrong answer. It also demonstrates responsible AI design.
+**Why use a guardrail?**
+A guardrail that refuses to answer when context is missing is more honest than a wrong answer that sounded too confident. I also believe it demonstrates a responsible AI design.
 
-**Why Streamlit?**
-It turns a CLI script into something anyone can demo without knowing Python, which matters for a science fair presentation.
+**Why use Streamlit?**
+I used streamlit because it turns the CLI script into something anyone can demo without knowing how to work with Python which matters for the presentation while demo time.
 
 ---
 
 ## Testing Summary
 
-The test harness in `tests/test_system.py` runs 6 predefined inputs through the retriever and guardrail and prints a pass/fail report.
+The test harness in `tests/test_system.py` runs 6 predefined inputs through the retriever and the guardrail and it prints a pass/fail report.
 
-- Music queries (lofi, pop, rock, moody): all retrieved relevant docs and passed the guardrail
-- Off-topic query (politics): correctly blocked by the guardrail
-- Nonsense query: retrieved nothing and was blocked, so the system correctly refused to answer
+- Music queries such as lofi, pop, rock, moody, all retrieved relevant docs and passed the guardrail.
+- Off-topic queries like politics, were correctly blocked by the guardrail.
+- Queries that didn't make any sense, retrieved nothing and was blocked so the system correctly refused to answer the question.
 
 **Result: 6/6 tests passed**
 
-The biggest limitation is that keyword search misses synonyms. "melancholy" won't match "sad" even if they mean the same thing.
+The biggest limitation is that keyword search misses synonyms. "melancholy" won't match "sad" even though if they mean the same thing.
 
 ---
 
 ## Reflection
 
-Building Cadence AI showed me that retrieval is often more important than generation. Gemini is capable of producing convincing music recommendations from nothing, but those recommendations would be made up. The RAG layer is what makes the system trustworthy because it forces the model to work with real data.
+Building Cadence AI showed me that retrieval is often more important than generation. I learned that Gemini is capable of producing convincing music recommendations from nothing but those recommendations would be made up. The RAG layer is what makes the system trustworthy because it forces the model to work with real data.
 
-The hardest part was not the code, it was deciding what the system should refuse to do. A guardrail that fires too often is useless, and one that fires too rarely defeats the purpose. Getting that balance right required actually testing edge cases instead of just assuming the happy path would work.
+The hardest part was deciding what the system should refuse to do AKA the guardrails. A guardrail that fires too often is useless and one that fires too rarely defeats the purpose. Getting that balance to work and make it right required me to actually test the edge cases instead of just assuming the simpler path would work.
 
 ---
 
 ## Loom Walkthrough
 
-[Video link coming soon]
 
 ---
 
@@ -164,4 +163,4 @@ The hardest part was not the code, it was deciding what the system should refuse
 
 ---
 
-*Built by Fikir Demeke | AI110 Module 4 Final Project*
+*Built by Fikir Demeke | AI110- Final Project*
