@@ -31,7 +31,7 @@ def generate(query: str, retrieved_docs: List[Dict]) -> str:
     prompt = build_prompt(query, retrieved_docs)
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemma-3-1b-it",
             contents=prompt
         )
         return response.text
