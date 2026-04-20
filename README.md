@@ -64,7 +64,7 @@ User Input (Streamlit UI)
 **1. Clone the repo**
 ```bash
 git clone https://github.com/fikirzelalem/applied-ai-system-project.git
-cd ai110-finalproject
+cd applied-ai-system-project
 ```
 
 **2. Install dependencies**
