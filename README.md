@@ -152,8 +152,9 @@ The hardest part was deciding what the system should refuse to do AKA the guardr
 
 ---
 
-## Loom Walkthrough
+## Loom Demo Walkthrough Video
 
+[Demo Video](https://www.loom.com/share/aa40920362f2431fa9c4876457842d11)
 
 ---
 
